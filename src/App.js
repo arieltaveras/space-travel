@@ -1,39 +1,33 @@
-import {useContext} from "react";
-import {BrowserRouter} from "react-router-dom";
+import { useContext } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import styles from "./App.module.css";
-import {LoadingContext} from "./context/LoadingProvider";
+import { LoadingContext } from "./context/LoadingProvider";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import AppRoute from "./routes/AppRoute";
 import Motto from "./components/Motto/Motto";
 import Loading from "./components/Loading/Loading";
 
-function App ()
-{
-  const {isLoading} = useContext(LoadingContext);
+function App() {
+  const { isLoading } = useContext(LoadingContext);
 
   return (
     <>
-      {
-        // todo wrap with BrowserRouter and render the necessary components
+      <BrowserRouter>
         <div className={styles["app"]}>
           <header className={styles["app__header"]}>
-            todo
+            <NavigationBar />
           </header>
 
-          <main className={styles["app__main"]}>
-            todo
-          </main>
+          <main className={styles["app__main"]}><AppRoute /></main>
 
           <footer className={styles["app__footer"]}>
-            todo
-          </footer>
+            <Motto />
+            </footer>
         </div>
-      }
+      </BrowserRouter>
 
-      {
-        // todo render Loading based on its condition
-      }
+      {isLoading && <Loading />}
     </>
   );
 }
